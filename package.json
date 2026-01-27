@@ -61,6 +61,7 @@
     "jsonwebtoken": "^9.0.3",
     "luxon": "^3.7.2",
     "mysql2": "^3.16.1",
+    "pg": "^8.17.2",
     "reflect-metadata": "^0.2.2",
     "uuid": "^13.0.0"
   },

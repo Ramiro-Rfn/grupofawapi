@@ -28,4 +28,10 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.string.optional(),
   DB_DATABASE: Env.schema.string(),
+
+  PG_DB_HOST: Env.schema.string({ format: 'host' }),
+  PG_DB_PORT: Env.schema.number(),
+  PG_DB_USER: Env.schema.string(),
+  PG_DB_PASSWORD: Env.schema.string.optional(),
+  PG_DB_DATABASE: Env.schema.string(),
 })
