@@ -1,5 +1,5 @@
-import { policies } from '#policies/main'
 import * as abilities from '#abilities/main'
+import { policies } from '#policies/main'
 
 import { Bouncer } from '@adonisjs/bouncer'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -25,6 +25,7 @@ export default class InitializeBouncerMiddleware {
      * Share bouncer helpers with Edge templates.
      */
     if ('view' in ctx) {
+      //@ts-ignore
       ctx.view.share(ctx.bouncer.edgeHelpers)
     }
 
