@@ -19,8 +19,10 @@ export default class UsersController {
     }
   }
 
-  public async index({ auth, response }: HttpContext) {
+  public async index({ auth, response, bouncer }: HttpContext) {
     await auth.authenticate()
+
+    await bouncer.authorize('viewUsers')
 
     try {
       const users = await userService.listAllUsers()
@@ -31,10 +33,12 @@ export default class UsersController {
     }
   }
 
-  public async show({ auth, response, request }: HttpContext) {
+  public async show({ auth, response, request, bouncer }: HttpContext) {
     await auth.authenticate()
 
     const { id } = request.params()
+
+    await bouncer.authorize('viewUser', id)
 
     try {
       const user = await userService.listOneUser(id)
@@ -45,9 +49,12 @@ export default class UsersController {
     }
   }
 
-  public async delete({ auth, response, request }: HttpContext) {
+  public async delete({ auth, response, request, bouncer }: HttpContext) {
     await auth.authenticate()
+
     const { id } = request.params()
+
+    await bouncer.authorize('deleteUser', id)
 
     try {
       await userService.deleteUser(id)
@@ -58,9 +65,12 @@ export default class UsersController {
     }
   }
 
-  public async update({ auth, response, request }: HttpContext) {
+  public async update({ auth, response, request, bouncer }: HttpContext) {
     await auth.authenticate()
     const { id } = request.params()
+
+    await bouncer.authorize('deleteUser', id)
+
     const data = request.body()
 
     try {

@@ -12,12 +12,37 @@
 |
 */
 
+import User from '#models/user'
 import { Bouncer } from '@adonisjs/bouncer'
 
 /**
  * Delete the following ability to start from
  * scratch
  */
-export const editUser = Bouncer.ability(() => {
-  return true
+export const viewUsers = Bouncer.ability((user: User) => {
+  return user.role === 'ADMIN'
+})
+
+export const deleteUser = Bouncer.ability((user: User, id: string) => {
+  if (user.role === 'ADMIN') {
+    return true
+  }
+
+  return user.id === id
+})
+
+export const editUser = Bouncer.ability((user: User, id: string) => {
+  if (user.role === 'ADMIN') {
+    return true
+  }
+
+  return user.id === id
+})
+
+export const viewUser = Bouncer.ability((user: User, id: string) => {
+  if (user.role === 'ADMIN') {
+    return true
+  }
+
+  return user.id === id
 })
