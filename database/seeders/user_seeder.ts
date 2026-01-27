@@ -6,6 +6,12 @@ import { v4 as uuid } from 'uuid'
 export default class extends BaseSeeder {
   async run() {
     // Write your database queries inside the run method
+    const admin = await User.findBy('email', 'admin@gmail.com')
+
+    if (admin?.id) {
+      return
+    }
+
     await User.create({
       id: uuid(),
       name: 'ADMIN',
