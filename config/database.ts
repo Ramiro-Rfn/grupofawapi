@@ -4,7 +4,7 @@ import { defineConfig } from '@adonisjs/lucid'
 const dbConfig = defineConfig({
   connection: 'postgres',
   connections: {
-    mysql: {
+    /*mysql: {
       client: 'mysql2',
       connection: {
         host: env.get('DB_HOST'),
@@ -17,7 +17,7 @@ const dbConfig = defineConfig({
         naturalSort: true,
         paths: ['database/migrations'],
       },
-    },
+    },*/
     postgres: {
       client: 'pg',
       connection: {
